@@ -74,3 +74,38 @@ Update package.json's `client` command such that your frontend showcasing the wi
 You are free to write your code using any JS frameworks, and libraries. But please reuse the existing `package.json`.
 
 Please ensure that you have some documentation left in this README.md about your work.
+
+
+# Application Wizard 
+
+### how to run the project: 
+
+`npm install` <br/>
+`npm run server` <br/>
+`npm run client`
+
+### Main tech stack : <br/>
+`React` <br/>
+`react-redux` <br/>
+`redux-saga` <br/>
+`react-hook-form` <br/>
+`yup` <br/>
+`materialUI` <br/>
+`mui styled components` <br/>
+
+### Implementation 
+
+There is a main component container `<Registration>`, which contains all the necessary steps.
+Each step contains its own logic, how to display form fields, and process data.
+All local storage is managed by `react-redux`, it is also synchronized with localStorage to be able to recover the data 
+if the user leaves the master for some reason.
+Updating of localStorage with debounce (configurable), to reduce count of updating.
+On initial boot, the application attempts to retrieve data from LocalStorage.
+
+Small reducers are provided for each step to make it easier to understand and handle all the steps.
+All side effects (api request,update store, etc.) are handled by `redux-saga`.
+
+There is a generic function for rendering different types of form fields `fileRenderer`, which gets parameters from each
+step component and returns the rendered component according to the requested component type.
+
+It is also possible to change color schemes and dark/light mode with `ThemeProvider`. 
