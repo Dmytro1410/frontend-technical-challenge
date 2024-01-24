@@ -1,24 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import Registration from "./components/Registration";
+import { useDispatch } from "react-redux";
+import { fetchInitialData } from "./store/reducers/Registration/sourceData";
+import { registrationLocalStorageKey } from "./utils/common";
 
 function App() {
+  const dispatch = useDispatch();
+  const localStorageData = JSON.parse(
+    localStorage.getItem(registrationLocalStorageKey) || "{}",
+  );
+
+  dispatch(fetchInitialData(localStorageData));
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Registration />
     </div>
   );
 }
